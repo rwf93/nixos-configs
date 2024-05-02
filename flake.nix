@@ -11,6 +11,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur = { 
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -18,6 +22,7 @@
     nixpkgs,
     home-manager,
     agenix,
+    nur,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -33,6 +38,7 @@
         modules = [
           home-manager.nixosModules.home-manager
 	  agenix.nixosModules.default
+	  nur.nixosModules.nur
 	  ./common
           ./devices/${device}/configuration.nix
         ];

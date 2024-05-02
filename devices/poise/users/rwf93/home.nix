@@ -11,12 +11,14 @@ in
 {
   programs.fish.enable = true;
   users.users.rwf93.shell = pkgs.fish;
-  home-manager.users.rwf93 = { 
-    programs = {
+  
+  home-manager.users.rwf93 = {   
+    programs = {  
       nix-index = {
         enable = true;
 	enableFishIntegration = true;
       };
+      
       kitty = {
         enable = true;
 	font = {
@@ -24,11 +26,22 @@ in
 	  size = 12;
 	};
       };
+      
       rofi = {
         enable = true;
         theme = "Arc-Dark";
       };
-      firefox.enable = true;
+      
+      firefox = {
+        enable = true;
+	profiles.default.extensions = with config.nur.repos.rycee.firefox-addons; [
+	  ublock-origin
+	  sponsorblock
+	  dearrow
+	  darkreader
+	];
+      };
+      
       fish = {
         enable = true;
         plugins = [
@@ -48,11 +61,14 @@ in
     services.picom = {
       enable = true;
       fade = true;
-      settings.blur = {
-        method = "gaussian";
-	size = 10;
-	deviation = 5.0;
+      settings = { 
+        blur = {
+          method = "gaussian";
+	  size = 10;
+	  deviation = 5.0;
+        };
       };
+
       activeOpacity = 0.8;
       inactiveOpacity = 0.8;
       fadeDelta = 4;
@@ -62,6 +78,7 @@ in
     };
     
     fonts.fontconfig.enable = true;
+    
     home.packages = with pkgs; [
       (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
       awesome
@@ -75,10 +92,8 @@ in
         modifier = mod;
         gaps = {
 	  outer = 15;
-	  inner= 5;
-	  smartGaps = true;
+	  inner= 10;
 	};
-
 
 	keybindings = lib.mkOptionDefault {
           "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show run";
