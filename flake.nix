@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nur.url = "github:nix-community/NUR"; 
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,18 +12,14 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nur = { 
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
     self,
     nixpkgs,
+    nur,  
     home-manager,
     agenix,
-    nur,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -36,9 +33,9 @@
         };
 
         modules = [
+	  nur.nixosModules.nur 
           home-manager.nixosModules.home-manager
 	  agenix.nixosModules.default
-	  nur.nixosModules.nur
 	  ./common
           ./devices/${device}/configuration.nix
         ];
