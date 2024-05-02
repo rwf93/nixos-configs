@@ -94,7 +94,7 @@ in
 	  outer = 15;
 	  inner= 10;
 	};
-
+	
 	keybindings = lib.mkOptionDefault {
           "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show run";
         };
