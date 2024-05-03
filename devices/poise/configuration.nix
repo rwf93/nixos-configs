@@ -19,7 +19,7 @@
   services.nfs.server = {
     enable = true;
     exports = ''
-      /export/rootfs *(rw,insecure,no_subtree_check,sync,no_root_squash)
+      /export/rootfs *(rw,async,no_root_squash,insecure)
     '';
   };
 
