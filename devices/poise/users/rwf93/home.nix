@@ -13,9 +13,9 @@ in
   users.users.rwf93.shell = pkgs.fish;
 
   home-manager.users.rwf93 = {   
-    xdg.configFile."nvim" = {
-      source = "${pkgs.nvchad}";
-    };
+    #xdg.configFile."nvim" = {
+      # source = "${pkgs.nvchad}";
+    #};
 
     programs = {  
       neovim.enable = true; 
@@ -89,8 +89,10 @@ in
       (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
         awesome
         vesktop
-        nvchad
+        #nvchad
         gcc
+	gnumake
+	ncurses
     ];
 
     xsession.enable = true;

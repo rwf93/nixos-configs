@@ -6,6 +6,7 @@
  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.supportedFilesystems = [ "ntfs" ];
 
   imports = [     
     ./hardware-configuration.nix
@@ -15,6 +16,14 @@
     ./users
   ];
 
+  services.nfs.server = {
+    enable = true;
+    exports = ''
+      /export/rootfs *(rw,insecure,no_subtree_check,sync,no_root_squash)
+    '';
+  };
+
+  services.atftpd.enable = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
