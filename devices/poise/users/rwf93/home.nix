@@ -86,6 +86,8 @@ in
     
         detect-rounded-corners = true;
 
+        corner-radius = 5;
+
         backend = "glx";
         experimental-backends = true; 
       };
@@ -164,7 +166,7 @@ in
         bars = [];
       };
       extraConfig = ''
-        for_window [class="^.*"] border pixel 1
+        for_window [class="^.*"] border pixel 2
       '';
     };	
   };
