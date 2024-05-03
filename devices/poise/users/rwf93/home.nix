@@ -13,9 +13,8 @@ in
   users.users.rwf93.shell = pkgs.fish;
 
   home-manager.users.rwf93 = {   
-    #xdg.configFile."nvim" = {
-      # source = "${pkgs.nvchad}";
-    #};
+    home.file.".config/nvim".source = ./config/nvim;
+    home.file.".config/nvim".recursive = true;
 
     programs = {  
       neovim.enable = true; 
@@ -49,6 +48,9 @@ in
 
       fish = {
         enable = true;
+        shellInit = ''
+          export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
+        '';
         plugins = [
         {
           name = "theme-bobthefish";
@@ -79,7 +81,7 @@ in
       fadeDelta = 10;
       opacityRules = [
         "100:class_g = 'firefox'"
-        "100:class_g = 'vesktop'" 
+          "100:class_g = 'vesktop'" 
       ];
     };
 
@@ -89,11 +91,14 @@ in
       (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
         awesome
         vesktop
-        #nvchad
         gcc
-	gnumake
-	ncurses
-    ];
+        gnumake
+        ncurses
+        nodejs_22
+        unzip
+        clang-tools
+        lua-language-server
+      ];
 
     xsession.enable = true;
     xsession.windowManager.i3 = {
@@ -112,7 +117,6 @@ in
         bars = [
           {
             position = "top";
-            #statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs";
           }
         ];
       };

@@ -22,6 +22,11 @@
       /export/rootfs *(rw,async,no_root_squash,insecure)
     '';
   };
+  # dumb hack imho
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    lua-language-server
+  ];
 
   services.atftpd.enable = true;
 
