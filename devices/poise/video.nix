@@ -1,6 +1,6 @@
 {
   pkgs,
-  ...
+    ...
 }: {
   services.xserver = { 
     enable = true;
@@ -12,8 +12,8 @@
     displayManager.session = [
       {
         manage = "desktop";
-	name = "xsession";
-	start = ''exec $HOME/.xsession'';
+        name = "xsession";
+        start = ''exec $HOME/.xsession'';
       }
     ];
     displayManager.setupCommands = ''
@@ -28,10 +28,10 @@
   };
 
   hardware.nvidia = {
-   modesetting.enable = true;
-   powerManagement.enable = false;
-   powerManagement.finegrained = false;
-   open = false;
-   nvidiaSettings = true;
+    modesetting.enable = true;
+    powerManagement.enable = false;
+    powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = true;
   };
 }

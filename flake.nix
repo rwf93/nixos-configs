@@ -22,24 +22,24 @@
     agenix,
     ...
   } @ inputs: let
-    system = "x86_64-linux";
-    mkConfig = device:
-      nixpkgs.lib.nixosSystem {
-        inherit system;
+  system = "x86_64-linux";
+  mkConfig = device:
+    nixpkgs.lib.nixosSystem {
+      inherit system;
 
-        specialArgs = {
-          inherit system nixpkgs inputs;
-          deviceConfig.hostName = device;
-        };
-
-        modules = [
-	  nur.nixosModules.nur 
-          home-manager.nixosModules.home-manager
-	  agenix.nixosModules.default
-	  ./common
-          ./devices/${device}/configuration.nix
-        ];
+      specialArgs = {
+        inherit system nixpkgs inputs;
+        deviceConfig.hostName = device;
       };
+
+      modules = [
+        nur.nixosModules.nur 
+          home-manager.nixosModules.home-manager
+          agenix.nixosModules.default
+          ./common
+          ./devices/${device}/configuration.nix
+      ];
+    };
   in {
     inherit inputs;
 
