@@ -31,6 +31,7 @@ in
         };
         settings = {
           resize_in_steps = "yes";
+          background = "#1e222a";
         };
       };
 
@@ -82,7 +83,7 @@ in
         shadow-opacity = 0.25;
         shadow-offset-x = 0.25;
         shadow-offset-y = 1; 
-        
+    
         detect-rounded-corners = true;
 
         backend = "glx";
@@ -145,16 +146,16 @@ in
           smartBorders = "on";
         };
 
-        window = {
-          border = -1;
-        };
-
         fonts = {
           names = [ "JetBrainsMono NF" ];
           style = "Medium";
           size = 11.0;
         };
-  
+ 
+        window = {
+          border = 0;
+        };
+
         keybindings = lib.mkOptionDefault {
           "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show run";           
           "${mod}+p" = "exec ${pkgs.flameshot}/bin/flameshot gui -p ~/captures";
@@ -162,6 +163,9 @@ in
 
         bars = [];
       };
+      extraConfig = ''
+        for_window [class="^.*"] border pixel 1
+      '';
     };	
   };
 }
