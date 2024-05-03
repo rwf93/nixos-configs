@@ -96,8 +96,7 @@ in
         ncurses
         nodejs_22
         unzip
-        clang-tools
-        lua-language-server
+        xclip
       ];
 
     xsession.enable = true;
