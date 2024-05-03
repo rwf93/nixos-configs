@@ -19,7 +19,8 @@
   services.nfs.server = {
     enable = true;
     exports = ''
-      /export/rootfs *(rw,async,no_root_squash,insecure)
+      /export/rootfs *(rw,async,no_root_squash,no_subtree_check,insecure)
+      /export/rootfs-gentoo *(rw,async,no_root_squash,no_subtree_check,insecure) 
     '';
   };
   # dumb hack imho

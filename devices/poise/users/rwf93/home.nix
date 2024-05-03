@@ -29,6 +29,9 @@ in
           name = "JetBrainsMono NF Regular";
           size = 12;
         };
+        settings = {
+          resize_in_steps = "yes";
+        };
       };
 
       rofi = {
@@ -88,28 +91,48 @@ in
     
       shadow = true;
 
+      fadeDelta = 10;
+      
       activeOpacity = 0.8;
       inactiveOpacity = 0.8;
-      fadeDelta = 10;
       opacityRules = [
         "100:class_g = 'firefox'"
         "100:class_g = 'vesktop'" 
       ];
+
+      shadowExclude = [
+        "name ~= 'polybar'"
+      ];      
     };
 
     fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
       (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
-        awesome
-        vesktop
-        gcc
-        gnumake
-        ncurses
-        nodejs_22
-        unzip
-        xclip
+      font-awesome 
+      vesktop
+      gcc
+      gnumake
+      ncurses
+      nodejs_22
+      unzip
+      xclip
+      pavucontrol
+      neofetch
     ];
+
+    services.polybar = {
+      enable = true;
+      package = pkgs.polybar.override {
+        i3Support = true;
+        alsaSupport = true;
+        iwSupport = true;
+        githubSupport = true;
+      };
+
+      config = ./config/polybar/config.ini;
+      script = "polybar main &";
+    };
 
     xsession.enable = true;
     xsession.windowManager.i3 = {
@@ -126,15 +149,18 @@ in
           border = -1;
         };
 
+        fonts = {
+          names = [ "JetBrainsMono NF" ];
+          style = "Medium";
+          size = 11.0;
+        };
+  
         keybindings = lib.mkOptionDefault {
-          "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show run";
+          "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show run";           
+          "${mod}+p" = "exec ${pkgs.flameshot}/bin/flameshot gui -p ~/captures";
         };
 
-        bars = [
-          {
-            position = "top";
-          }
-        ];
+        bars = [];
       };
     };	
   };
