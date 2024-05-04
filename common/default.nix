@@ -6,4 +6,5 @@
   ];
 
   networking.hostName = deviceConfig.hostName;
+  services.automatic-timezoned.enable = true;
 }

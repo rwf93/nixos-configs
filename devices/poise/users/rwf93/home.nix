@@ -117,6 +117,8 @@ in
       neofetch
       clang-tools
       lua-language-server
+      minicom
+      screen
     ];
 
     services.polybar = {
