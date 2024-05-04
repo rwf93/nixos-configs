@@ -52,18 +52,10 @@ in
 
       fish = {
         enable = true;
-        shellInit = ''
-          export NIX_LD=$(nix eval --impure --raw --expr 'let pkgs = import <nixpkgs> {}; NIX_LD = pkgs.lib.fileContents "${pkgs.stdenv.cc}/nix-support/dynamic-linker"; in NIX_LD')
-        '';
         plugins = [
           {
             name = "theme-bobthefish";
-            src = pkgs.fetchFromGitHub {
-              owner = "oh-my-fish";
-              repo = "theme-bobthefish";
-              rev = "0c15ff1cbc4bfa026c882e01dd5ceec327f26033";
-              sha256 = "sha256-qSVx0JpXwz28D1YUtc3ujZ16rt+dLbbQ70/2J2wU5bs="; 
-            };
+            src = ./config/fish/plugins/theme-bobthefish;
           }
         ];
       };
@@ -101,6 +93,7 @@ in
       opacityRules = [
         "100:class_g = 'firefox'"
         "100:class_g = 'vesktop'" 
+        "100:name *?= 'minecraft'"
       ];
 
       shadowExclude = [
@@ -122,6 +115,8 @@ in
       xclip
       pavucontrol
       neofetch
+      clang-tools
+      lua-language-server
     ];
 
     services.polybar = {

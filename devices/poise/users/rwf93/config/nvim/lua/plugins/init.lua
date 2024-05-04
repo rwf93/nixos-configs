@@ -16,13 +16,13 @@ return {
   },
 
   {
+    "VonHeikemen/lsp-zero.nvim",
+  },
+
+  -- I can't use mason due to it installing language servers for me, lsp-zero is better anyways.
+  {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "lua-language-server", "stylua",
-        "html-lsp", "css-lsp" , "prettier", "clangd"
-      },
-    },
+    enabled = false,
   },
 
   {
