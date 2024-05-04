@@ -131,39 +131,48 @@ in
       config = ./config/polybar/config.ini;
       script = "polybar main &";
     };
-
-    xsession.enable = true;
-    xsession.windowManager.i3 = {
-      enable = true;
-      config = {
-        modifier = mod;
-        gaps = {
-          outer = 25;
-          inner = 35;
-          smartBorders = "on";
-        };
-
-        fonts = {
-          names = [ "JetBrainsMono NF" ];
-          style = "Medium";
-          size = 11.0;
-        };
  
-        window = {
-          border = 0;
-        };
-
-        keybindings = lib.mkOptionDefault {
-          "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show run";           
-          "${mod}+p" = "exec ${pkgs.flameshot}/bin/flameshot gui -p ~/captures";
-        };
-
-        bars = [];
-      };
-      extraConfig = ''
-        for_window [class="^.*"] border pixel 2
+    xsession = {
+      enable = true;
+      
+      initExtra = ''
+        ${pkgs.feh}/bin/feh --bg-fill --no-fehbg ${./wallpapers/wallhaven-gply8e_1920x1080.png}; 
       '';
-    };	
+
+      windowManager = {
+        i3 = {
+          enable = true;
+          config = {
+            modifier = mod;
+            gaps = {
+              outer = 25;
+              inner = 35;
+              smartBorders = "on";
+            };
+
+            fonts = {
+              names = [ "JetBrainsMono NF" ];
+              style = "Medium";
+              size = 11.0;
+            };
+
+            window = {
+              border = 0;
+            };
+
+            keybindings = lib.mkOptionDefault {
+              "${mod}+d" = "exec ${pkgs.rofi}/bin/rofi -show run";           
+              "${mod}+p" = "exec ${pkgs.flameshot}/bin/flameshot gui -p ~/captures";
+            };
+
+            bars = [];
+          };
+          extraConfig = ''
+            for_window [class="^.*"] border pixel 2
+            '';
+        };	
+      };
+    };
   };
 }
 
