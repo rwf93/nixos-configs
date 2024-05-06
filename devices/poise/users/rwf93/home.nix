@@ -93,7 +93,10 @@ in
       opacityRules = [
         "100:class_g = 'firefox'"
         "100:class_g = 'vesktop'" 
+        "95:class_g = 'kitty' && focused"         
+        "75:class_g = 'kitty' && focused"         
         "100:name *?= 'minecraft'"
+        "100:_NET_WM_STATE@:32a = '_NET_WM_STATE_FULLSCREEN'"
       ];
 
       shadowExclude = [
