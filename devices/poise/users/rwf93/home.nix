@@ -122,6 +122,12 @@ in
       lua-language-server
       minicom
       screen
+      htop
+      btop
+      wget
+      zip
+      p7zip
+      squashfsTools
     ];
 
     services.polybar = {
