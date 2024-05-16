@@ -34,10 +34,10 @@
 
       modules = [
         nur.nixosModules.nur 
-          home-manager.nixosModules.home-manager
-          agenix.nixosModules.default
-          ./common
-          ./devices/${device}/configuration.nix
+        home-manager.nixosModules.home-manager
+        agenix.nixosModules.default
+        ./common
+        ./devices/${device}/configuration.nix
       ];
     };
   in {
