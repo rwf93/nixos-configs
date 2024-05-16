@@ -23,6 +23,11 @@ in
         enableFishIntegration = true;
       };
 
+      fzf = {
+        enable = true;
+        enableFishIntegration = true;
+      };
+
       kitty = {
         enable = true;
         font = {
