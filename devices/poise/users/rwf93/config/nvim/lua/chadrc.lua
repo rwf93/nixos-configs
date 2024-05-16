@@ -13,4 +13,10 @@ M.ui = {
 	-- },
 }
 
+vim.opt.expandtab = false
+vim.opt.shiftwidth = 8
+vim.opt.smartindent = true
+vim.opt.tabstop = 8
+vim.opt.softtabstop = 8
+
 return M
