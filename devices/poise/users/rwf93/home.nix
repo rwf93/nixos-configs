@@ -133,6 +133,7 @@ in
       zip
       p7zip
       squashfsTools
+      github-desktop
     ];
 
     services.polybar = {
