@@ -12,6 +12,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -20,6 +24,7 @@
     nur,  
     home-manager,
     agenix,
+    stylix,
     ...
   } @ inputs: let
   system = "x86_64-linux";
@@ -36,6 +41,7 @@
         nur.nixosModules.nur 
         home-manager.nixosModules.home-manager
         agenix.nixosModules.default
+        stylix.nixosModules.stylix 
         ./common
         ./devices/${device}/configuration.nix
       ];

@@ -12,6 +12,8 @@ in
   programs.fish.enable = true;
   users.users.rwf93.shell = pkgs.fish;
 
+  stylix.image = ./wallpapers/wallhaven-wejydr_1920x1080.png;
+
   home-manager.users.rwf93 = {   
     home.file.".config/nvim".source = ./config/nvim;
     home.file.".config/nvim".recursive = true;
@@ -31,18 +33,17 @@ in
       kitty = {
         enable = true;
         font = {
-          name = "JetBrainsMono NF Regular";
-          size = 12;
+          #name = "JetBrainsMono NF Regular";
+          #size = 12;
         };
         settings = {
           resize_in_steps = "yes";
-          background = "#1e222a";
         };
       };
 
       rofi = {
         enable = true;
-        theme = "Arc-Dark";
+        #theme = "Arc-Dark";
       };
 
       firefox = {
@@ -109,6 +110,20 @@ in
       ];      
     };
 
+    stylix.cursor.size = 16;
+
+    stylix.fonts.sizes = {
+      terminal = 12;
+      desktop = 11;
+    };
+
+    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+
+    stylix.fonts.monospace = {
+      name = "JetBrainsMono NF";
+      package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }); 
+    };
+
     fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
@@ -152,10 +167,6 @@ in
     xsession = {
       enable = true;
       
-      initExtra = ''
-        ${pkgs.feh}/bin/feh --bg-fill --no-fehbg ${./wallpapers/wallhaven-gply8e_1920x1080.png}; 
-      '';
-
       windowManager = {
         i3 = {
           enable = true;
@@ -170,7 +181,6 @@ in
             fonts = {
               names = [ "JetBrainsMono NF" ];
               style = "Medium";
-              size = 11.0;
             };
 
             window = {

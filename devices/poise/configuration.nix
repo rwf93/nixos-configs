@@ -4,9 +4,16 @@
 
 { config, lib, pkgs, ... }: {
  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "ntfs" ];
+
+  boot = {
+    kernelParams = [ "acpi_enforce_resources=lax" ];
+    kernelModules = [ "i2c-dev" "i2c-piix4" ];
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    supportedFilesystems = [ "ntfs" ];
+  };
 
   imports = [     
     ./hardware-configuration.nix
@@ -15,12 +22,16 @@
     ./secrets.nix
     ./users
   ];
+  
+  services.hardware.openrgb.enable = true;
+  hardware.i2c.enable = true;
 
   services.nfs.server = {
     enable = true;
     exports = ''
       /export/rootfs *(rw,async,no_root_squash,no_subtree_check,insecure)
       /export/rootfs-gentoo *(rw,async,no_root_squash,no_subtree_check,insecure) 
+      /export/rootfs-adelie *(rw,async,no_root_squash,no_subtree_check,insecure)  
     '';
   };
   # dumb hack imho
