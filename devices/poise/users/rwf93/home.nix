@@ -12,6 +12,7 @@ in
   programs.fish.enable = true;
   users.users.rwf93.shell = pkgs.fish;
 
+  stylix.enable = true;
   stylix.image = ./wallpapers/wallhaven-wejydr_1920x1080.png;
 
   home-manager.users.rwf93 = {   
@@ -32,10 +33,10 @@ in
 
       kitty = {
         enable = true;
-        font = {
+#        font = {
           #name = "JetBrainsMono NF Regular";
           #size = 12;
-        };
+#        };
         settings = {
           resize_in_steps = "yes";
         };
@@ -130,7 +131,7 @@ in
       (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
       font-awesome 
       vesktop
-      gcc
+      #gcc
       gnumake
       ncurses
       nodejs_22
