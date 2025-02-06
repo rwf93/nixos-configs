@@ -129,6 +129,7 @@ in
 
     home.packages = with pkgs; [
       (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
+      fastfetch
       font-awesome 
       vesktop
       #gcc
