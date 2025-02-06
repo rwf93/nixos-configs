@@ -14,6 +14,19 @@ in
 
   stylix.enable = true;
   stylix.image = ./wallpapers/wallhaven-wejydr_1920x1080.png;
+  stylix.cursor.size = 16;
+
+  stylix.fonts.sizes = {
+    terminal = 12;
+    desktop = 11;
+  };
+
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
+
+  stylix.fonts.monospace = {
+    name = "JetBrainsMono NF";
+    package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }); 
+  };
 
   home-manager.users.rwf93 = {   
     home.file.".config/nvim".source = ./config/nvim;
@@ -109,20 +122,6 @@ in
       shadowExclude = [
         "name ~= 'polybar'"
       ];      
-    };
-
-    stylix.cursor.size = 16;
-
-    stylix.fonts.sizes = {
-      terminal = 12;
-      desktop = 11;
-    };
-
-    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
-
-    stylix.fonts.monospace = {
-      name = "JetBrainsMono NF";
-      package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }); 
     };
 
     fonts.fontconfig.enable = true;
