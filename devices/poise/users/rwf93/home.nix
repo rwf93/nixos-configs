@@ -25,7 +25,7 @@ in
 
   stylix.fonts.monospace = {
     name = "JetBrainsMono NF";
-    package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; }); 
+    package = pkgs.nerd-fonts.jetbrains-mono;
   };
 
   home-manager.users.rwf93 = {   
@@ -62,12 +62,12 @@ in
 
       firefox = {
         enable = true;
-        profiles.default.extensions = with config.nur.repos.rycee.firefox-addons; [
-          ublock-origin
-            sponsorblock
-            dearrow
-            darkreader
-        ];
+#        profiles.default.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+#          ublock-origin
+#            sponsorblock
+#            dearrow
+#            darkreader
+#        ];
       };
 
       fish = {
@@ -127,7 +127,8 @@ in
     fonts.fontconfig.enable = true;
 
     home.packages = with pkgs; [
-      (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
+      pkgs.nerd-fonts.jetbrains-mono
+      pkgs.nerd-fonts.fira-code 
       fastfetch
       font-awesome 
       vesktop

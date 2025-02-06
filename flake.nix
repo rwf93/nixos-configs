@@ -38,7 +38,7 @@
       };
 
       modules = [
-        nur.nixosModules.nur 
+        nur.modules.nixos.default 
         home-manager.nixosModules.home-manager
         agenix.nixosModules.default
         stylix.nixosModules.stylix 
