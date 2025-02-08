@@ -62,12 +62,12 @@ in
 
       firefox = {
         enable = true;
-#        profiles.default.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-#          ublock-origin
-#            sponsorblock
-#            dearrow
-#            darkreader
-#        ];
+        profiles.default.extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          ublock-origin
+            sponsorblock
+            dearrow
+            darkreader
+        ];
       };
 
       fish = {
